@@ -1,12 +1,13 @@
 import React from 'react';
-import food from "../assets/food.png";
-import drink from "../assets/cola.png";
-import {IFoodMenu} from "../types";
+import food from "../../assets/food.png";
+import drink from "../../assets/cola.png";
+import {IFoodMenu} from "../../types";
 
 interface IFoodProps {
     index: number;
     name: string;
     price: number;
+    onAddFood: React.MouseEventHandler<Element>;
 }
 
 export const MENU: IFoodMenu[] = [
@@ -22,7 +23,7 @@ export const MENU: IFoodMenu[] = [
 const FoodMenu: React.FC<IFoodProps> = props => {
 
     return (
-        <button className="wrap-inner">
+        <button onClick={props.onAddFood} className="wrap-inner">
             <img className="pic" src={MENU[props.index].img} alt="pic" />
             <h2>{props.name} x {props.price}</h2>
         </button>

@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import './App.css';
-import FoodMenu from "./components/FoodMenu";
-import { MENU } from "./components/FoodMenu";
+import FoodMenu from "./components/FoodMenu/FoodMenu";
+import { MENU } from "./components/FoodMenu/FoodMenu";
+import Price from "./components/Price/Price";
+import Info from "./components/Info/Info";
 
 
 const App = () => {
@@ -15,18 +17,66 @@ const App = () => {
     {name: 'Cola', count: 0},
   ]);
 
+  const [addSomeFood, setAddSomeFood] = useState(false);
 
-  return (
-    <div className="App">
-      {menu.map((item, index) => (
-          <FoodMenu key={index}
+  const addFood = (name: string) => {
+    setMenu(prevState => {
+      return prevState.map(food => {
+        if (food.name === name) {
+          return {
+            ...food,
+            count: food.count + 1,
+          };
+        }
+        return food;
+      });
+    });
+
+    setAddSomeFood(true);
+  };
+
+  const deleteFood = (name: string) => {
+
+    setMenu(prevState => {
+      return prevState.map(food => {
+        if (food.name === name) {
+          if (food.count > 0) {
+            return {
+              ...food,
+              count: 0,
+            };
+          }
+        }
+        return food;
+      });
+    });
+  };
+
+
+    console.log(menu);
+
+    return (
+        <div className="App">
+          <div className="info">
+            <Info class={addSomeFood ? 'hide' : 'show'}/>
+            {menu.map((item, index) => (
+                <Price key={index}
                        name={item.name}
-                       index={index}
+                       count={item.count}
                        price={MENU[index].price}
-          />
-      ))}
-    </div>
-  );
-}
+                       onDelFood={() => deleteFood(item.name)}/>
+            ))}
+          </div>
+          {menu.map((item, index) => (
+              <FoodMenu key={index}
+                        name={item.name}
+                        index={index}
+                        price={MENU[index].price}
+                        onAddFood={() => addFood(item.name)}
+              />
+          ))}
+        </div>
+    );
+  }
 
 export default App;
