@@ -19,7 +19,7 @@ const PriceAll: React.FC<IProps> = ({menu, addSomeFood, deleteFood}) => {
                 <Price key={index}
                        name={item.name}
                        count={item.count}
-                       price={MENU[index].price}
+                       price={MENU[index].price * item.count}
                        onDelFood={() => deleteFood(item.name)}
                        class={addSomeFood ? 'show' : 'hide'}/>
             ))}
