@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import './App.css';
 import { MENU } from "./components/FoodMenu/FoodMenu";
 import FoodDrinks from "./components/FoodMenu/FoodDrinks";
 import PriceAll from "./components/Price/PriceAll";
 import Total from "./components/Total/Total";
+import './App.css';
+
 
 
 const App = () => {
