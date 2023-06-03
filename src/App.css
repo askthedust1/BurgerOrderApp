@@ -79,9 +79,15 @@ button {
   color: #2e2528;
 }
 
-.name {
+.name,
+.food-name {
   font-size: 20px;
   font-weight: bold;
+}
+
+.food-name {
+  width: 100px;
+  text-align: left;
 }
 
 .wrap-inn {

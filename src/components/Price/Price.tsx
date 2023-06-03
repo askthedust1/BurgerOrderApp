@@ -18,7 +18,7 @@ const Price: React.FC<IPriceProps> = props => {
 
     return (
         <div className={test} id="elem">
-            <div className="name">{props.name}</div>
+            <div className="food-name">{props.name}</div>
             <div className="name"> x {props.count}</div>
             <div className="name">Price: {props.price}</div>
             <button className="btn" onClick={props.onDelFood}>X</button>
