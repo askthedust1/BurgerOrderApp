@@ -7,9 +7,8 @@ interface IInfoProps {
 const Info: React.FC<IInfoProps> = props => {
 
     return (
-        <div>
-            <p className={props.class}>Order is empty!</p>
-            <p className={props.class}>Please set some items!</p>
+        <div className="empty">
+            <p className={props.class}>Order is empty! Please add some items!</p>
         </div>
     );
 };

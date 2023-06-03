@@ -1,7 +1,7 @@
 import React from 'react';
 import { IFoodMenus } from "../../types";
 import FoodMenu from "../FoodMenu/FoodMenu";
-import {MENU} from "../FoodMenu/FoodMenu";
+import {MENU} from "./FoodMenu";
 
 
 interface IProps {
@@ -11,7 +11,7 @@ interface IProps {
 
 const FoodDrinks: React.FC<IProps> = ({menu, addFood}) => {
     return (
-        <div>
+        <div className="wrap">
             {menu.map((item, index) => (
                 <FoodMenu key={index}
                           name={item.name}

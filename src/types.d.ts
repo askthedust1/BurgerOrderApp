@@ -8,3 +8,8 @@ export interface IFoodMenus {
     name: string;
     count: number;
 }
+
+export interface IAdd {
+    text: string;
+    status: boolean;
+}

@@ -11,8 +11,9 @@ interface IProps {
 }
 
 const PriceAll: React.FC<IProps> = ({menu, addSomeFood, deleteFood}) => {
+
     return (
-        <div>
+        <div className="price">
             <Info class={addSomeFood ? 'hide' : 'show'}/>
             {menu.map((item, index) => (
                 <Price key={index}

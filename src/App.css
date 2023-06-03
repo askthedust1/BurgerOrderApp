@@ -1,12 +1,27 @@
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  background: #2e2528;
+  color: white;
+}
+
+
 .App {
   text-align: center;
   display: flex;
-  width: 1200px;
+  width: 1100px;
+  margin-top: 100px;
+  border: 5px solid #fdb509;
+  border-radius: 10px;
 }
 
 img {
   width: 200px;
   height: 200px;
+  vertical-align: top;
 }
 
 .hide {
@@ -14,5 +29,103 @@ img {
 }
 
 .show {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
+
+
+
+.wrap {
+  width: 750px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 5px;
+  position: relative;
+}
+
+.wrap::before {
+  content: "Add Items";
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  background: #2e2528;
+  font-size: 20px;
+  padding: 0 10px;
+  text-transform: uppercase;
+}
+
+.add-item {
+  position: absolute;
+  background: #2e2528;
+  top: 0;
+  right: 270px;
+  font-size: 20px;
+  padding: 0 10px;
+  text-transform: uppercase;
+}
+
+.info {
+  width: 500px;
+  border-right: 5px #fdb509 solid;
+  position: relative;
+  padding: 10px 0;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+  border: none;
+  color: #2e2528;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wrap-inn {
+  padding: 20px;
+}
+
+#elem {
+  border-bottom: 5px solid #fdb509;
+}
+
+.menu {
+  background: #fdb509;
+  margin-bottom: 10px;
+  border-radius: 0 0 5px 5px;
+}
+
+h2 {
+  margin: 0;
+  padding: 5px 0;
+}
+
+.btn {
+  color: #fdb509;
+}
+
+#total {
+  font-size: 30px;
+  color: #fdb509;
+  font-weight: bold;
+}
+
+.order {
+  position: absolute;
+  background: #2e2528;
+  top: -35px;
+  left: 10px;
+  font-size: 20px;
+  padding: 0 10px;
+  text-transform: uppercase;
+}
+
+.empty {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+

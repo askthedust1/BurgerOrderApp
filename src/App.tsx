@@ -3,6 +3,7 @@ import './App.css';
 import { MENU } from "./components/FoodMenu/FoodMenu";
 import FoodDrinks from "./components/FoodMenu/FoodDrinks";
 import PriceAll from "./components/Price/PriceAll";
+import Total from "./components/Total/Total";
 
 
 const App = () => {
@@ -16,7 +17,9 @@ const App = () => {
     {name: 'Cola', count: 0},
   ]);
 
-  const [addSomeFood, setAddSomeFood] = useState(false);
+  const [addSomeFood, setAddSomeFood] = useState<boolean>(false);
+
+  const [sum, setSum] = useState<number>(0);
 
   const addFood = (name: string) => {
     setMenu(prevState => {
@@ -32,9 +35,12 @@ const App = () => {
     });
 
     setAddSomeFood(true);
+    findSum(name);
   };
 
   const deleteFood = (name: string) => {
+
+    const index = menu.findIndex(item => item.name === name);
 
     setMenu(prevState => {
       return prevState.map(food => {
@@ -49,49 +55,32 @@ const App = () => {
         return food;
       });
     });
+
+    let total = sum - (menu[index].count * MENU[index].price);
+
+    if (total === 0) {
+      setSum(total);
+      setAddSomeFood(false);
+    }
+
+    setSum(total);
+
   };
 
-  const getTotalSum = () => {
-    return menu.reduce((acc, value) => {
-      let food = MENU.filter(ingredient => ingredient.name === value.name)[0];
-      if (food) {
-        return acc + (food.price * value.count);
-      }
-      return acc;
-    }, 0);
+  const findSum = (name: string) => {
+    const index = menu.findIndex(person => person.name === name);
+    setSum(sum + MENU[index].price);
   };
 
-    return (
+
+  return (
         <div className="App">
           <div className="info">
+            <p className="order">Order list</p>
             <PriceAll menu={menu} deleteFood={deleteFood} addSomeFood={addSomeFood}/>
-
-
-            {/*<Info class={addSomeFood ? 'hide' : 'show'}/>*/}
-            {/*{menu.map((item, index) => (*/}
-            {/*    <Price key={index}*/}
-            {/*           name={item.name}*/}
-            {/*           count={item.count}*/}
-            {/*           price={MENU[index].price}*/}
-            {/*           onDelFood={() => deleteFood(item.name)}*/}
-            {/*           class={addSomeFood ? 'show' : 'hide'}/>*/}
-            {/*))}*/}
-
+            <Total sum={sum} class={addSomeFood ? 'show' : 'hide'}/>
           </div>
-
-          <div>
             <FoodDrinks menu={menu} addFood={addFood} />
-          </div>
-
-
-          {/*{menu.map((item, index) => (*/}
-          {/*    <FoodMenu key={index}*/}
-          {/*              name={item.name}*/}
-          {/*              index={index}*/}
-          {/*              price={MENU[index].price}*/}
-          {/*              onAddFood={() => addFood(item.name)}*/}
-          {/*    />*/}
-          {/*))}*/}
         </div>
     );
   }

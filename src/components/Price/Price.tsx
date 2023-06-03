@@ -10,16 +10,18 @@ interface IPriceProps {
 
 const Price: React.FC<IPriceProps> = props => {
 
-    let test = 'ToggleButton';
+    let test = 'show';
 
     if (props.count === 0) {
         test = 'hide';
     }
 
     return (
-        <div className={test}>
-            <div>{props.name} x {props.count} Price: {props.price}</div>
-            <button onClick={props.onDelFood}>X</button>
+        <div className={test} id="elem">
+            <div className="name">{props.name}</div>
+            <div className="name"> x {props.count}</div>
+            <div className="name">Price: {props.price}</div>
+            <button className="btn" onClick={props.onDelFood}>X</button>
         </div>
     );
 };
