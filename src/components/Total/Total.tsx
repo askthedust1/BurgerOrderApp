@@ -9,7 +9,7 @@ const Total: React.FC<IInfoProps> = props => {
 
     return (
         <div className={props.class} id="total">
-            <p>Total: {props.sum}</p>
+            <p>Total Price: {props.sum}</p>
         </div>
     );
 };
