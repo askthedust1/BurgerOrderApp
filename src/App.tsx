@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
-import FoodMenu from "./components/FoodMenu/FoodMenu";
 import { MENU } from "./components/FoodMenu/FoodMenu";
-import Price from "./components/Price/Price";
-import Info from "./components/Info/Info";
+import FoodDrinks from "./components/FoodMenu/FoodDrinks";
+import PriceAll from "./components/Price/PriceAll";
 
 
 const App = () => {
@@ -52,29 +51,47 @@ const App = () => {
     });
   };
 
-
-    console.log(menu);
+  const getTotalSum = () => {
+    return menu.reduce((acc, value) => {
+      let food = MENU.filter(ingredient => ingredient.name === value.name)[0];
+      if (food) {
+        return acc + (food.price * value.count);
+      }
+      return acc;
+    }, 0);
+  };
 
     return (
         <div className="App">
           <div className="info">
-            <Info class={addSomeFood ? 'hide' : 'show'}/>
-            {menu.map((item, index) => (
-                <Price key={index}
-                       name={item.name}
-                       count={item.count}
-                       price={MENU[index].price}
-                       onDelFood={() => deleteFood(item.name)}/>
-            ))}
+            <PriceAll menu={menu} deleteFood={deleteFood} addSomeFood={addSomeFood}/>
+
+
+            {/*<Info class={addSomeFood ? 'hide' : 'show'}/>*/}
+            {/*{menu.map((item, index) => (*/}
+            {/*    <Price key={index}*/}
+            {/*           name={item.name}*/}
+            {/*           count={item.count}*/}
+            {/*           price={MENU[index].price}*/}
+            {/*           onDelFood={() => deleteFood(item.name)}*/}
+            {/*           class={addSomeFood ? 'show' : 'hide'}/>*/}
+            {/*))}*/}
+
           </div>
-          {menu.map((item, index) => (
-              <FoodMenu key={index}
-                        name={item.name}
-                        index={index}
-                        price={MENU[index].price}
-                        onAddFood={() => addFood(item.name)}
-              />
-          ))}
+
+          <div>
+            <FoodDrinks menu={menu} addFood={addFood} />
+          </div>
+
+
+          {/*{menu.map((item, index) => (*/}
+          {/*    <FoodMenu key={index}*/}
+          {/*              name={item.name}*/}
+          {/*              index={index}*/}
+          {/*              price={MENU[index].price}*/}
+          {/*              onAddFood={() => addFood(item.name)}*/}
+          {/*    />*/}
+          {/*))}*/}
         </div>
     );
   }

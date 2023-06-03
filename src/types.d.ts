@@ -3,3 +3,8 @@ export interface IFoodMenu {
     price: number;
     img: string;
 }
+
+export interface IFoodMenus {
+    name: string;
+    count: number;
+}
