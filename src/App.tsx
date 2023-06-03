@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import FoodMenu from "./components/FoodMenu";
+import { MENU } from "./components/FoodMenu";
 
-function App() {
+
+const App = () => {
+
+  const [menu, setMenu] = useState([
+    {name: 'Hamburger', count: 0},
+    {name: 'Cheeseburger', count: 0},
+    {name: 'Fries', count: 0},
+    {name: 'Coffee', count: 0},
+    {name: 'Tea', count: 0},
+    {name: 'Cola', count: 0},
+  ]);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {menu.map((item, index) => (
+          <FoodMenu key={index}
+                       name={item.name}
+                       index={index}
+                       price={MENU[index].price}
+          />
+      ))}
     </div>
   );
 }
